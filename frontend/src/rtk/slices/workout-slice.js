@@ -4,10 +4,7 @@ export const fetchWorkouts = createAsyncThunk(
   async () => {
     const response = await fetch("/api/workouts");
     const data = await response.json();
-
-    if (response.ok) {
-      return data;
-    }
+    return data;
   }
 );
 export const workoutSlice = createSlice({
@@ -15,12 +12,12 @@ export const workoutSlice = createSlice({
   name: "workoutSlice",
   reducers: {
     createWorkout: (state, action) => {
-      return [...state, ...action.payload];
+      return [...state, action.payload];
     },
     delWorkout: (state, action) => {
-      const product = action.payload;
+      const workout = action.payload;
 
-      return state.filter((x) => x.id !== product.id);
+      return state.filter((x) => x.id !== workout.id);
     },
   },
   extraReducers: (builder) => {
@@ -29,5 +26,5 @@ export const workoutSlice = createSlice({
     });
   },
 });
-export const { addWorkout, delWorkout } = workoutSlice.actions;
+export const { createWorkout, delWorkout } = workoutSlice.actions;
 export default workoutSlice.reducer;
