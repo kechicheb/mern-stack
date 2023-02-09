@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // components
@@ -11,7 +11,7 @@ const workouts  =useSelector((state)=>state.workouts);
   const dispatch = useDispatch();
   useEffect(() => {
  dispatch(fetchWorkouts())
-  }, [workouts]);
+  }, [dispatch, workouts]);
   return (
     <div className="home">
       <div className="workouts">
