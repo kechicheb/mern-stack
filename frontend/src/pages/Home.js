@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
+import { fetchWorkouts } from "../rtk/slices/workout-slice";
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState(null);
-
+const workouts  =useSelector((state)=>state.workouts);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchWorkouts = async () => {
-      const response = await fetch("/api/workouts");
-      const json = await response.json();
-
-      if (response.ok) {
-        setWorkouts(json);
-      }
-    };
-
-    fetchWorkouts();
-  }, []);
+ dispatch(fetchWorkouts())
+  }, [workouts]);
   return (
     <div className="home">
       <div className="workouts">
