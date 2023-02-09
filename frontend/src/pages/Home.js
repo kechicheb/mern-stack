@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // components
@@ -7,10 +7,10 @@ import WorkoutForm from "../components/WorkoutForm";
 import { fetchWorkouts } from "../rtk/slices/workout-slice";
 
 const Home = () => {
-const workouts  =useSelector((state)=>state.workouts);
+  const workouts = useSelector((state) => state.workouts);
   const dispatch = useDispatch();
   useEffect(() => {
- dispatch(fetchWorkouts())
+    dispatch(fetchWorkouts());
   }, [dispatch, workouts]);
   return (
     <div className="home">
